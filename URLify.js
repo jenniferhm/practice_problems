@@ -1,8 +1,6 @@
-/* Cracking the Coding Interview Question: 1.3: URLify
+// Cracking the Coding Interview Question: 1.3: URLify
 
-*/
-
-function replaceSpaces(str, length) {
+function URLify(str, length) {
   let count = 0;
   let arr = str.split("");
   
@@ -20,6 +18,4 @@ function replaceSpaces(str, length) {
   return arr.join("");
 }
 
-
-replaceSpaces("Mr John Smith    ", 13); // "Mr$%20John%20Smith";
-replaceSpaces("    ", 4); // "%20%20%20%20";
+module.exports = URLify;
