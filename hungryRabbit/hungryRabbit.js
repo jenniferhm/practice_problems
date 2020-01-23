@@ -72,6 +72,9 @@ function _findStartingSquare(garden) {
   const rows = garden.length;
   const cols = garden[0].length;
 
+  let rowMidpoint = rows / 2;
+  let colMidpoint = cols / 2;
+
   let center = 0;
   let centerCoordinates = [];
 
@@ -79,21 +82,18 @@ function _findStartingSquare(garden) {
   if (rows % 2 !== 0) {
     // Odd # of columns => only 1 starting point.
     if (cols % 2 !== 0) {
-      const rowMidpoint = Math.floor(rows / 2);
-      const colMidpoint = Math.floor(cols / 2);
-
-      centerCoordinates = [rowMidpoint, colMidpoint];
-      center = garden[rowMidpoint][colMidpoint];
+      centerCoordinates = [Math.floor(rowMidpoint), Math.floor(colMidpoint)];
+      center = garden[Math.floor(rowMidpoint)][Math.floor(colMidpoint)];
     } else {
       // Even # of columns => 2 possible starting points.
-      const leftMidpoint = garden[Math.floor(rows / 2)][Math.floor(cols / 2 - 1)];
-      const rightMidpoint = garden[Math.floor(rows / 2)][Math.floor(cols / 2)];
+      const leftMidpoint = garden[Math.floor(rowMidpoint)][Math.floor(colMidpoint - 1)];
+      const rightMidpoint = garden[Math.floor(rowMidpoint)][Math.floor(colMidpoint)];
 
       if (leftMidpoint > rightMidpoint) {
-        centerCoordinates = [Math.floor(rows / 2), Math.floor(cols / 2 - 1)];
+        centerCoordinates = [Math.floor(rowMidpoint), Math.floor(colMidpoint - 1)];
         center = leftMidpoint;
       } else {
-        centerCoordinates = [Math.floor(rows / 2), Math.floor(cols / 2)];
+        centerCoordinates = [Math.floor(rowMidpoint), Math.floor(colMidpoint)];
         center = rightMidpoint;
       }
     }
@@ -104,29 +104,29 @@ function _findStartingSquare(garden) {
     // Even # of columns => 4 possible starting points.
     if (cols % 2 === 0) {
       let possibleStarts = {};
-      const topLeft = garden[rows / 2 - 1][cols / 2 - 1];
-      const topRight = garden[rows / 2 - 1][cols / 2];
-      const bottomLeft = garden[rows / 2][cols / 2 - 1];
-      const bottomRight = garden[rows / 2][cols / 2];
+      const topLeft = garden[rowMidpoint - 1][colMidpoint - 1];
+      const topRight = garden[rowMidpoint - 1][colMidpoint];
+      const bottomLeft = garden[rowMidpoint][colMidpoint - 1];
+      const bottomRight = garden[rowMidpoint][colMidpoint];
 
-      possibleStarts[topLeft] = [rows / 2 - 1, cols / 2 - 1];
-      possibleStarts[topRight] = [rows / 2 - 1, cols / 2];
-      possibleStarts[bottomLeft] = [rows / 2, cols / 2 - 1];
-      possibleStarts[bottomRight] = [rows / 2, cols / 2];
+      possibleStarts[topLeft] = [rowMidpoint - 1, colMidpoint - 1];
+      possibleStarts[topRight] = [rowMidpoint - 1, colMidpoint];
+      possibleStarts[bottomLeft] = [rowMidpoint, colMidpoint - 1];
+      possibleStarts[bottomRight] = [rowMidpoint, colMidpoint];
 
       const highestVal = Math.max(topLeft, topRight, bottomLeft, bottomRight);
       centerCoordinates = possibleStarts[highestVal];
       center = highestVal;
     } else {
       // Odd # of columns => 2 possible starting points.
-      const topMidpoint = garden[rows / 2 - 1][Math.floor(cols / 2)];
-      const bottomMidpoint = garden[rows / 2][Math.floor(cols / 2)];
+      const topMidpoint = garden[rowMidpoint - 1][Math.floor(colMidpoint)];
+      const bottomMidpoint = garden[rowMidpoint][Math.floor(colMidpoint)];
 
       if (topMidpoint > bottomMidpoint) {
-        centerCoordinates = [rows / 2 - 1, Math.floor(cols / 2)];
+        centerCoordinates = [rowMidpoint - 1, Math.floor(colMidpoint)];
         center = topMidpoint;
       } else {
-        centerCoordinates = [rows / 2, Math.floor(cols / 2)];
+        centerCoordinates = [rowMidpoint, Math.floor(colMidpoint)];
         center = bottomMidpoint;
       }
     }
