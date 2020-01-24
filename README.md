@@ -1,5 +1,5 @@
 # Practice Problems
-These are some coding problems I have solved from various sources. Within each folder there is a primary `.js` or `.py` file that will mention the source of the problem.
+These are some coding problems I have solved from various sources such as LeetCode, HackerRank, coding challenges. Within each folder there is a primary `.js` or `.py` file that will mention the source of the problem.
 
 ---
 
