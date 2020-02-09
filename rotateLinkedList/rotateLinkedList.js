@@ -22,12 +22,12 @@ var rotateLinkedList = function (head, k) {
   if (k > length) {
     k = k % length;
   }
-  let x = 1;
+  let oppositeOfK = 1;
   let current = head;
 
-  while (x < length - k) {
+  while (oppositeOfK < length - k) {
     current = current.next;
-    x++;
+    oppositeOfK++;
   }
 
   let newLastNode = current;
