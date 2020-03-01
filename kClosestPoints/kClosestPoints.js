@@ -7,7 +7,7 @@ var kClosestPoints = function(points, K) {
 
 function _findDistance(coords) {
   const [x,y] = coords;
-  return Math.sqrt(x*x + y*y);
+  return x*x + y*y;
 }
 
 module.exports = kClosestPoints;
